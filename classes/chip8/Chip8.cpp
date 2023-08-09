@@ -2,6 +2,8 @@
 #include "../renderer/Renderer.h"
 #include "../chip8/Chip8.h"
 #include "../keyboard/Keyboard.h"
+#include "../speaker/Speaker.h"
+#include "../cpu/Cpu.h"
 #include <ctime>
 
 Chip8::Chip8(){}
@@ -28,6 +30,15 @@ void Chip8::initializeRenderer()
     Keyboard* k = new Keyboard();
     k->isKeyPressed(50); // TODO: enum
     delete k;
+
+    Speaker* s = new Speaker();
+    s->play(50);
+    s->stop();
+    delete s;
+
+    Cpu* c = new Cpu();
+    // TODO: test, move the above to class members and move all deletes to deconstructor
+    delete c;
     // END TEST
 
     // loop = requestAnimationFrame(step); TODO: ???

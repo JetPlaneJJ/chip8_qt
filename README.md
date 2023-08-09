@@ -1,4 +1,4 @@
-# crow_chip8_emulator
+# Chip-8 Emulator/Interpreter
 Chip-8 Emulator in Qt Framework (C++)
 
 Plan: Qt Desktop app running app of CHIP-8 interpreter.
