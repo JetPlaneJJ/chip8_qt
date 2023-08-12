@@ -3,12 +3,12 @@
 
 #include <unordered_map>
 
-class Keyboard 
+class Keyboard
 {
 public:
     /**
      * @brief Construct a new Keyboard object, mapping Chip8 controls to a modern keyboard input
-     * 
+     *
      */
     Keyboard();
     ~Keyboard();
@@ -21,7 +21,7 @@ public:
 
     /**
      * @brief onKeyDown will be called upon key pressed event
-     * 
+     *
      */
     void onKeyDown(); // TODO: event
 

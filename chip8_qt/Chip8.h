@@ -5,9 +5,9 @@
 
 /**
  * @brief Chip8 Initializes the Renderer
- * 
+ *
  */
-class Chip8 
+class Chip8
 {
 public:
     Chip8();
@@ -15,14 +15,14 @@ public:
 
     /**
      * @brief Initialize renderer at 60fps, use for testing.
-     * 
+     *
      */
     void initializeRenderer();
 
 private:
     /**
      * @brief Cycle the CPU
-     * 
+     *
      */
     void step();
     const int fps_{60};

@@ -33,3 +33,4 @@
 
 .DS_Store
 *.dSYM/
+build-chip8_qt-Qt_6_5_2_for_macOS-Debug/

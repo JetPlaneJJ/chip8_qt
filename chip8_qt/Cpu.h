@@ -1,12 +1,12 @@
 /**
  * @file Cpu.h
  * @author your name (you@domain.com)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2023-08-09
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 #include <vector>
@@ -20,49 +20,49 @@ public:
     ~Cpu();
 
     /**
-     * @brief 
-     * 
+     * @brief
+     *
      */
     void loadSpritesIntoMemory();
 
     /**
-     * @brief 
-     * 
-     * @param program 
+     * @brief
+     *
+     * @param program
      * @return true Program successfully loaded into memory.
      */
-    bool loadProgramIntoMemory(auto program); // TODO program variable type???
+    bool loadProgramIntoMemory(std::string program); // TODO program variable type???
 
     /**
-     * @brief 
-     * 
+     * @brief
+     *
      * @param romName Local file name containing ROM.
      */
     void loadROM(std::string romName);
 
     /**
      * @brief Cycles the CPU.
-     * 
+     *
      */
     void cycle();
 
     /**
      * @brief Update delay and sound timers.
-     * 
+     *
      */
     void updateTimers();
 
     /**
      * @brief If sound timer is greater than zero, play a sound.
-     * 
+     *
      */
     void playSound();
 
     /**
      * @brief Handles all 36 of the Chip-8 instructions.
-     * 
+     *
      */
-    void executeInstruction(opcode);
+    void executeInstruction(int opcode);
 
 private:
     const int speed_ = 10;

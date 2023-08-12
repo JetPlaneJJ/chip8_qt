@@ -6,9 +6,9 @@
  * @brief Controls playing audio
  * @version 0.1
  * @date 2023-08-09
- * 
+ *
  * @copyright Copyright (c) 2023
- * 
+ *
  */
 
 // TODO:
@@ -20,17 +20,17 @@ private:
 public:
     Speaker(/* args */);
     ~Speaker();
-    
+
     /**
-     * @brief 
-     * 
-     * @param frequency 
+     * @brief
+     *
+     * @param frequency
      */
     void play(const int frequency);
 
     /**
-     * @brief 
-     * 
+     * @brief
+     *
      */
     void stop();
 };
