@@ -2,7 +2,11 @@
 #define Keyboard_h
 
 #include <unordered_map>
+#include <QKeyEvent>
 
+/**
+ * @brief The Keyboard class handles keyboard state.
+ */
 class Keyboard
 {
 public:
@@ -14,38 +18,62 @@ public:
     ~Keyboard();
 
     /**
-     * @param keyCode representing key pressed on keyboard
-     * @return true if keyCode was pressed
+     * @param key
+     * @return true if key is currently pressed
      */
-    bool isKeyPressed(int keyCode);
+    bool isKeyPressed(Qt::Key key) const;
 
     /**
-     * @brief onKeyDown will be called upon key pressed event
-     *
+     * @brief setKeyPressed
+     * @param key of type Qt Key pressed
+     * @param pressed - true if key is currently pressed
+     * @return false if key not supported
      */
-    void onKeyDown(); // TODO: event
+    bool setKeyPressed(Qt::Key key, bool pressed);
 
-    // void onKeyUp(event);
+    /**
+     * @brief clearKeysPressed Sets all keys to unpressed
+     */
+    void clearKeysPressed();
 
 private:
-    std::unordered_map<int, bool> keysPressed_;
+    std::unordered_map<int, bool> keysPressed_ = {
+        {Qt::Key_1, false}, // 1
+        {Qt::Key_2, false}, // 2
+        {Qt::Key_3, false}, // 3
+        {Qt::Key_4, false}, // 4
+        {Qt::Key_Q, false}, // Q
+        {Qt::Key_W, false}, // W
+        {Qt::Key_E, false}, // E
+        {Qt::Key_R, false}, // R
+        {Qt::Key_A, false}, // A
+        {Qt::Key_S, false}, // S
+        {Qt::Key_D, false}, // D
+        {Qt::Key_F, false}, // F
+        {Qt::Key_Z, false}, // Z
+        {Qt::Key_X, false}, // X
+        {Qt::Key_C, false}, // C
+        {Qt::Key_V, false}  // V
+    };
+
+    // Chip-8 uses a 16-key hex keypad
     const std::unordered_map<int, int> keymap_ = {
-        {49, 0x1}, // 1
-        {50, 0x2}, // 2
-        {51, 0x3}, // 3
-        {52, 0xc}, // 4
-        {81, 0x4}, // Q
-        {87, 0x5}, // W
-        {69, 0x6}, // E
-        {82, 0xD}, // R
-        {65, 0x7}, // A
-        {83, 0x8}, // S
-        {68, 0x9}, // D
-        {70, 0xE}, // F
-        {90, 0xA}, // Z
-        {88, 0x0}, // X
-        {67, 0xB}, // C
-        {86, 0xF}  // V
+        {Qt::Key_1, 0x1}, // 1
+        {Qt::Key_2, 0x2}, // 2
+        {Qt::Key_3, 0x3}, // 3
+        {Qt::Key_4, 0xc}, // 4
+        {Qt::Key_Q, 0x4}, // Q
+        {Qt::Key_W, 0x5}, // W
+        {Qt::Key_E, 0x6}, // E
+        {Qt::Key_R, 0xD}, // R
+        {Qt::Key_A, 0x7}, // A
+        {Qt::Key_S, 0x8}, // S
+        {Qt::Key_D, 0x9}, // D
+        {Qt::Key_F, 0xE}, // F
+        {Qt::Key_Z, 0xA}, // Z
+        {Qt::Key_X, 0x0}, // X
+        {Qt::Key_C, 0xB}, // C
+        {Qt::Key_V, 0xF}  // V
     };
 };
 

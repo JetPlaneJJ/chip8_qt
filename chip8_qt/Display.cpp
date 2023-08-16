@@ -6,19 +6,23 @@
 #include <QPainterPath>
 #include <QPainter>
 
-#include "Renderer.h"
+#include "Display.h"
 
-Renderer::Renderer(QWidget *parent, int scale) :
+Display::Display(QWidget *parent, int scale) :
     QWidget(parent),
     scale_(scale),
     width_(kDefault_col_size * scale),
     height_(kDefault_row_size * scale)
 {
     setFixedSize(width_, height_);
-    display_ = std::vector<int>(kDefault_row_size * kDefault_col_size, 0);
+    pixels_ = std::vector<int>(kDefault_row_size * kDefault_col_size, 0);
+    keyboard_ = new Keyboard();
 }
 
-Renderer::~Renderer(){}
+Display::~Display()
+{
+    delete keyboard_;
+}
 
 /**
  * @brief Toggles a pixel at x, y location.
@@ -28,31 +32,31 @@ Renderer::~Renderer(){}
  * @return true Pixel at x, y was set.
  * @return false Pixel at x, y was erased.
  */
-bool Renderer::setPixel(int x, int y)
+bool Display::setPixel(int x, int y)
 {
     // Handle out of bounds pixel
     x %= (kDefault_col_size);
     y %= (kDefault_row_size);
 
     const int pixelLoc = x + (y * kDefault_col_size);
-    display_[pixelLoc] ^= 1; // toggle pixel
-    return display_[pixelLoc];
+    pixels_[pixelLoc] ^= 1; // toggle pixel
+    return pixels_[pixelLoc];
 }
 
 /**
  * @brief Clears the display.
  *
  */
-void Renderer::clear()
+void Display::clear()
 {
-    std::fill(display_.begin(), display_.end(), 0);
+    std::fill(pixels_.begin(), pixels_.end(), 0);
 }
 
 /**
  * @brief Renders pixels in display at 60 times/second.
  *
  */
-void Renderer::paintEvent(QPaintEvent *event)
+void Display::paintEvent(QPaintEvent *event)
 {
     // TODO: Clear the display every render cycle.
 
@@ -64,7 +68,7 @@ void Renderer::paintEvent(QPaintEvent *event)
     for (int i = 0; i < kDefault_col_size * kDefault_row_size; i++) {
         int x = (i % kDefault_col_size) * scale_;
         int y = std::floor(i / kDefault_col_size) * scale_;
-        if (display_[i]) {
+        if (pixels_[i]) {
             QRect rect(x, y, scale_, scale_);
             painter.drawRect(rect);
         }
@@ -75,10 +79,10 @@ void Renderer::paintEvent(QPaintEvent *event)
  * @brief Test-draw a few pixels on the screen.
  *
  */
-void Renderer::testRender()
+void Display::testRender()
 {
-    Renderer::setPixel(0, 0);
-    Renderer::setPixel(60, 1);
-    Renderer::setPixel(15, 3);
-    Renderer::setPixel(2, 89);
+    Display::setPixel(0, 0);
+    Display::setPixel(60, 1);
+    Display::setPixel(15, 3);
+    Display::setPixel(2, 89);
 }

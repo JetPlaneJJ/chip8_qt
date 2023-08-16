@@ -1,5 +1,8 @@
 #ifndef Speaker_h
 #define Speaker_h
+
+#include <string>
+
 /**
  * @file Speaker.h
  * @author Jay Lin
@@ -12,27 +15,31 @@
  */
 
 // TODO:
-
+/**
+ * @brief Speaker handles audio control
+ */
 class Speaker
 {
-private:
-    /* data */
 public:
     Speaker(/* args */);
     ~Speaker();
 
     /**
-     * @brief
+     * @brief Plays a sound at given frequency
      *
      * @param frequency
      */
     void play(const int frequency);
 
     /**
-     * @brief
+     * @brief Stops the playing sound.
      *
      */
     void stop();
+
+private:
+    int volume_;
+    std::string media_file_path_; // local file path to audio to play
 };
 
 #endif /* Speaker_h */

@@ -13,6 +13,9 @@
 #include <string>
 
 //TODO fill out class
+/**
+ * @brief Emulates a CPU
+ */
 class Cpu
 {
 public:

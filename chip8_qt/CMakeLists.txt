@@ -28,13 +28,13 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         Speaker.h
         Cpu.h
-        Chip8.h
-        Chip8.cpp
+
+
         Speaker.cpp
-        Renderer.cpp
+        Display.cpp
         Keyboard.cpp
         Cpu.cpp
-        Renderer.h
+        Display.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET chip8_qt APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
