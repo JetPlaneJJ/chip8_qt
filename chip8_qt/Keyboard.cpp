@@ -14,8 +14,7 @@ Keyboard::~Keyboard() {}
  */
 bool Keyboard::isKeyPressed(Qt::Key key) const
 {
-    auto pos = keysPressed_.find(key);
-    return (pos != keysPressed_.end() && pos->second);
+    return (isValidKey(key) && keysPressed_.find(key)->second);
 }
 
 /**
@@ -26,13 +25,12 @@ bool Keyboard::isKeyPressed(Qt::Key key) const
 */
 bool Keyboard::setKeyPressed(Qt::Key key, bool pressed)
 {
-    auto pos = keysPressed_.find(key);
-    if (pos != keysPressed_.end())
+    if (!isValidKey(key))
     {
-        pos->second = pressed;
-        return true;
+        return false;
     }
-    return false;
+    keysPressed_.find(key)->second = pressed;
+    return true;
 }
 
 /**
@@ -41,4 +39,13 @@ bool Keyboard::setKeyPressed(Qt::Key key, bool pressed)
 void Keyboard::clearKeysPressed()
 {
     for (auto& [_, v] : keysPressed_) v = false;
+}
+
+/**
+* @brief isValidKey
+* @return true if key is supported on Chip 8 system
+*/
+bool Keyboard::isValidKey(Qt::Key key) const
+{
+    return keysPressed_.count(key);
 }

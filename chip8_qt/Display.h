@@ -11,6 +11,7 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include "Keyboard.h"
+#include "Speaker.h"
 
 /**
  * @brief Display represents the renderer window and handles emulator graphics rendering.
@@ -51,6 +52,7 @@ private:
     std::vector<int> pixels_; // 1D array representing pixels on screen
     QPoint mouse_pos_; // position of mouse
     Keyboard* keyboard_;
+    Speaker* speaker_;
 
     /**
      * @brief Renders pixels in display at 60 times/second.
@@ -58,12 +60,20 @@ private:
      */
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
+    /**
+     * @brief mousePressEvent
+     * @param event
+     */
     void mousePressEvent(QMouseEvent *event) Q_DECL_OVERRIDE
     {
         mouse_pos_ = event->pos();
         update();
     }
 
+    /**
+     * @brief keyPressEvent
+     * @param event
+     */
     void keyPressEvent(QKeyEvent* event) Q_DECL_OVERRIDE
     {
         switch (event->key())
@@ -71,10 +81,12 @@ private:
             case Qt::Key_X:
                 keyboard_->setKeyPressed(Qt::Key_X, true);
                 std::cout << "Pressing X: " << keyboard_->isKeyPressed(Qt::Key_X) << std::endl;
+                speaker_->play(50);
                 break;
             case Qt::Key_F:
                 keyboard_->setKeyPressed(Qt::Key_F, true);
                 std::cout << "Pressing F: " << keyboard_->isKeyPressed(Qt::Key_F) << std::endl;
+                speaker_->play(50);
                 break;
             default:
                 event->ignore();
@@ -89,10 +101,12 @@ private:
         case Qt::Key_X:
                 keyboard_->setKeyPressed(Qt::Key_X, false);
                 std::cout << "KEY RELEASE X: " << keyboard_->isKeyPressed(Qt::Key_X) << std::endl;
+                speaker_->stop();
                 break;
         case Qt::Key_F:
                 keyboard_->setKeyPressed(Qt::Key_F, false);
                 std::cout << "KEY RELEASE F: " << keyboard_->isKeyPressed(Qt::Key_F) << std::endl;
+                speaker_->stop();
                 break;
         default:
                 event->ignore();

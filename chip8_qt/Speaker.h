@@ -2,6 +2,8 @@
 #define Speaker_h
 
 #include <string>
+#include <QMediaPlayer>
+#include <QAudioOutput>
 
 /**
  * @file Speaker.h
@@ -25,11 +27,11 @@ public:
     ~Speaker();
 
     /**
-     * @brief Plays a sound at given frequency
+     * @brief Plays a sound at given volume
      *
-     * @param frequency
+     * @param volume
      */
-    void play(const int frequency);
+    void play(const int volume);
 
     /**
      * @brief Stops the playing sound.
@@ -40,6 +42,8 @@ public:
 private:
     int volume_;
     std::string media_file_path_; // local file path to audio to play
+    QMediaPlayer* media_player_;
+    QAudioOutput* audio_output_;
 };
 
 #endif /* Speaker_h */

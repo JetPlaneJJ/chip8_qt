@@ -25,10 +25,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
 
         Keyboard.h
-
         Speaker.h
         Cpu.h
-
 
         Speaker.cpp
         Display.cpp
@@ -80,3 +78,7 @@ install(TARGETS chip8_qt
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(chip8_qt)
 endif()
+
+# Playing Audio TODO: is this needed?
+find_package(Qt6 REQUIRED COMPONENTS Multimedia)
+target_link_libraries(chip8_qt PRIVATE Qt6::Multimedia)

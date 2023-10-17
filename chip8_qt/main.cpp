@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
     Display display;
     display.setFixedSize(640, 320);
     display.testRender();
-//    display.clear();
     display.show();
 
     return a.exec();

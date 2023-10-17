@@ -16,12 +16,14 @@ Display::Display(QWidget *parent, int scale) :
 {
     setFixedSize(width_, height_);
     pixels_ = std::vector<int>(kDefault_row_size * kDefault_col_size, 0);
-    keyboard_ = new Keyboard();
+    keyboard_ = new Keyboard;
+    speaker_ = new Speaker;
 }
 
 Display::~Display()
 {
     delete keyboard_;
+    delete speaker_;
 }
 
 /**

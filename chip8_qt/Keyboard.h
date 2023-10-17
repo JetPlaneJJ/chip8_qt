@@ -32,9 +32,21 @@ public:
     bool setKeyPressed(Qt::Key key, bool pressed);
 
     /**
+     * @brief isValidKey
+     * @return true if key is supported on Chip 8 system
+     */
+    bool isValidKey(Qt::Key key) const;
+
+    /**
      * @brief clearKeysPressed Sets all keys to unpressed
      */
     void clearKeysPressed();
+
+    /**
+     * @brief getKey
+     * @param key
+     */
+    Qt::Key& getKey(Qt::Key key);
 
 private:
     std::unordered_map<int, bool> keysPressed_ = {
