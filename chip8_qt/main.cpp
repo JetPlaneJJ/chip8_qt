@@ -19,5 +19,7 @@ int main(int argc, char *argv[])
     display.testRender();
     display.show();
 
+//    Cpu cpu;
+
     return a.exec();
 }

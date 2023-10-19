@@ -1,4 +1,5 @@
 #include "Speaker.h"
+#include <QCoreApplication>
 
 Speaker::Speaker()
 {
@@ -19,9 +20,10 @@ Speaker::~Speaker()
 */
 void Speaker::play(const int volume)
 {
-    // TODO: currently doesn't play anything
     media_player_->setAudioOutput(audio_output_);
-    media_player_->setSource(QUrl::fromLocalFile("../audio/hit.wav"));
+
+    // TODO: change this to relative file path
+    media_player_->setSource(QUrl::fromLocalFile("/Users/jlin/Downloads/Projects/chip8_qt/chip8_qt/audio/hit.mp3"));
     audio_output_->setVolume(volume);
     media_player_->play();
 }
